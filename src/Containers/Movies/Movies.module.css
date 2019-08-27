@@ -1,0 +1,7 @@
+.Movies {
+  width: 80%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin: auto;
+}
