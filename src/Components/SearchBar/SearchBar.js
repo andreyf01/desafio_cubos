@@ -1,13 +1,11 @@
 import React from 'react';
+import classes from './SearchBar.module.css'
 
-const searchBar = props => {
-  return (
-    <div>
-      <input
-        type="text"
-        placeholder="Busque um filme por nome, ano ou gênero..." />
-    </div>
-  );
-}
+const searchBar = props => (
+  <input
+    className={classes.SearchBar}
+    type="text"
+    placeholder="Busque um filme por nome, ano ou gênero..." />
+);
 
 export default searchBar;

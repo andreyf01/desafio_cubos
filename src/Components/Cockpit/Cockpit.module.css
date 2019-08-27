@@ -1,0 +1,12 @@
+.Cockpit {
+  text-align: center;
+}
+
+h1 {
+  background-color: #116193;
+  color: #02d9db;
+  font-weight: 300;
+  height: 60px;
+  top: 50%;
+  margin: 15px 0 10px 0;
+}
