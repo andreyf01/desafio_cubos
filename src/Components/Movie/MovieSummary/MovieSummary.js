@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './MovieInfo.module.css';
+import classes from './MovieSummary.module.css';
 
 const movieInfo = (props) => (
   <div className={classes.MovieInfo}>

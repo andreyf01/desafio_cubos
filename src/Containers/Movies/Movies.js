@@ -17,6 +17,7 @@ const movies = (props) => (
         movieTitle={mvs.movieTitle}
         description={mvs.description} />
     ))}
+    Pages
   </div>
 );
 
