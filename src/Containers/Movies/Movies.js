@@ -3,8 +3,8 @@ import Movie from './Movie/Movie';
 import classes from './Movies.module.css';
 
 const movieList = [
-  { image: 'http://fakeimg.pl/100x150?text=thor&font=lobster', alt: 'thor', movieTitle: 'Thor: Ragnarok', description: 'Thor está preso do outro lado do universo. Ele precisa correr contra o tempo para voltar a Asgard e parar Ragnarok, a destruição de seu mundo, que está nas mãos da poderosa e implacável vilã Hela.' },
-  { image: 'http://fakeimg.pl/100x150?text=mmaravilha&font=lobster', alt: 'mmaravilha', movieTitle: 'Mulher Maravilha', description: 'Treinada desde cedo para ser uma guerreira imbatível, Diana Prince nunca saiu da paradisíaca ilha em que é reconhecida como princesa das Amazonas. Quando o piloto Steve Trevor se acidenta e cai em uma praia do local, ela descobre que uma guerra sem precedentes está se espalhando pelo mundo e decide deixar seu lar certa de que pode parar o conflito. Lutando para acabar com todas as lutas, Diana percebe o alcance de seus poderes e sua verdadeira missão na Terra.' }
+  { image: 'http://fakeimg.pl/140x210?text=thor&font=lobster', alt: 'thor', movieTitle: 'Thor: Ragnarok', description: 'Thor está preso do outro lado do universo. Ele precisa correr contra o tempo para voltar a Asgard e parar Ragnarok, a destruição de seu mundo, que está nas mãos da poderosa e implacável vilã Hela.' },
+  { image: 'http://fakeimg.pl/140x210?text=mmaravilha&font=lobster', alt: 'mmaravilha', movieTitle: 'Mulher Maravilha', description: 'Treinada desde cedo para ser uma guerreira imbatível, Diana Prince nunca saiu da paradisíaca ilha em que é reconhecida como princesa das Amazonas. Quando o piloto Steve Trevor se acidenta e cai em uma praia do local, ela descobre que uma guerra sem precedentes está se espalhando pelo mundo e decide deixar seu lar certa de que pode parar o conflito. Lutando para acabar com todas as lutas, Diana percebe o alcance de seus poderes e sua verdadeira missão na Terra.' }
 ]
 
 const movies = (props) => (

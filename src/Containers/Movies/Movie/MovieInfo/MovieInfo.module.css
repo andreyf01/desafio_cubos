@@ -1,0 +1,16 @@
+.MovieInfo {
+  text-align: left;
+}
+.MovieInfo p {
+  font-family: "Lato", sans-serif;
+  padding: 20px;
+  font-size: 0.8em;
+}
+
+.MovieInfo h2 {
+  font-weight: 300;
+  letter-spacing: -1px;
+  font-size: 2em;
+  margin: -40px 0 -20px 0;
+
+}
