@@ -1,5 +1,6 @@
 import React from 'react';
 import Movie from '../../Components/Movie/Movie';
+import MovieFull from '../../Components/MovieFull/MovieFull';
 import classes from './Movies.module.css';
 
 const movieList = [
@@ -11,6 +12,7 @@ const movies = (props) => (
   <div className={classes.Movies}>
     {movieList.map(mvs => (
       <Movie
+        //<MovieFull
         key={mvs.alt}
         image={mvs.image}
         alt={mvs.alt}
