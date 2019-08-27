@@ -1,5 +1,5 @@
 import React from 'react';
-import Movie from './Movie/Movie';
+import Movie from '../../Components/Movie/Movie';
 import classes from './Movies.module.css';
 
 const movieList = [
