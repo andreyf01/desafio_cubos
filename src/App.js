@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Layout from './Components/Layout/Layout';
-import MovieList from './Containers/Movies/Movies';
+import MovieList from './Containers/MovieList/MovieList';
 import SearchBar from './Components/SearchBar/SearchBar';
 import Cockpit from './Components/Cockpit/Cockpit';
 import './App.css';
@@ -11,7 +11,7 @@ class App extends Component {
   state = {
     query: '',
     results: [],
-    showResults: false
+    visible: false
   };
 
   handleChange = (event) => {
@@ -36,6 +36,7 @@ class App extends Component {
       const response = await rawResponse.json();
       this.setState(prevState => ({
         ...prevState,
+        visible: true,
         results: response.results
       }));
     } catch (e) {
@@ -51,7 +52,7 @@ class App extends Component {
   };*/
 
   render() {
-    const { results } = this.state;
+    const { results, visible } = this.state;
 
     return (
       <div className="App">
@@ -62,7 +63,7 @@ class App extends Component {
             changed={this.handleChange} />
           <MovieList
             movies={results}
-            showResults={this.state.showResults} />
+            visible={visible} />
         </Layout>
       </div>
     );
