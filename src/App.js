@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Layout from './Components/Layout/Layout';
-import Movies from './Containers/Movies/Movies';
+import MovieList from './Containers/Movies/Movies';
 import SearchBar from './Components/SearchBar/SearchBar';
 import Cockpit from './Components/Cockpit/Cockpit';
 import './App.css';
@@ -21,26 +21,38 @@ class App extends Component {
   handleKey = (event) => {
     if (event.key === 'Enter') {
       const query = this.state.query.replace(' ', '+');
-      this.setState({ query: query });
+      this.setState(prevState => ({
+        ...prevState,
+        query: query
+      }));
       this.search(this.state.query);
+      //      this.toggleResults();
     }
   };
 
-  search = (query) => {
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`)
-      .then(response => response.json())
-      .then(responseData => {
-        this.setState({
-          results: responseData.results
-        });
-        console.log(this.state.results);
-      })
-      .catch(error => {
-        console.log('Error fetching and parsing data', error);
-      });
+  search = async (query) => {
+    try {
+      const rawResponse = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=pt-BR&query=${query}`);
+      const response = await rawResponse.json();
+      this.setState(prevState => ({
+        ...prevState,
+        results: response.results
+      }));
+    } catch (e) {
+      console.log(e);
+    }
   }
 
+  /*toggleResults = () => {
+    console.log(this.state.results.length);
+    if (this.state.results.length === 0) {
+      console.log('aa');
+    }
+  };*/
+
   render() {
+    const { results } = this.state;
+
     return (
       <div className="App">
         <Layout>
@@ -48,7 +60,9 @@ class App extends Component {
           <SearchBar
             keyDown={this.handleKey}
             changed={this.handleChange} />
-          <Movies />
+          <MovieList
+            movies={results}
+            showResults={this.state.showResults} />
         </Layout>
       </div>
     );
