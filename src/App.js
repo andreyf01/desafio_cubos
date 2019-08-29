@@ -6,12 +6,16 @@ import Cockpit from './Components/Cockpit/Cockpit';
 import './App.css';
 
 const API_KEY = 'f95f42152ef5946aaebac8ca5c73720f';
+const API = 'https://api.themoviedb.org/3/';
 
 class App extends Component {
   state = {
     query: '',
-    results: [],
-    visible: false
+    movieList: [],
+    genres: {},
+    visible: false,
+    movieDetails: {},
+    expand: false
   };
 
   handleChange = (event) => {
@@ -26,33 +30,66 @@ class App extends Component {
         query: query
       }));
       this.search(this.state.query);
-      //      this.toggleResults();
     }
   };
 
   search = async (query) => {
     try {
-      const rawResponse = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=pt-BR&query=${query}`);
+      const rawResponse = await fetch(`${API}search/movie?api_key=${API_KEY}&language=pt-BR&query=${query}`);
       const response = await rawResponse.json();
       this.setState(prevState => ({
         ...prevState,
         visible: true,
-        results: response.results
+        movieList: response.results
       }));
     } catch (e) {
       console.log(e);
     }
   }
 
-  /*toggleResults = () => {
-    console.log(this.state.results.length);
-    if (this.state.results.length === 0) {
-      console.log('aa');
+  componentDidMount() {
+    try {
+      //fetch(`${API}genre/movie/list?api_key=${API_KEY}&language=pt-BR`)
+      fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=f95f42152ef5946aaebac8ca5c73720f&language=pt-BR')
+        .then(rawResponse => rawResponse.json())
+        .then(response => {
+          let genreNames = {};
+          response.genres.forEach(({ id, name }) => {
+            genreNames[id] = name;
+          });
+          this.setState(prevState => ({
+            ...prevState,
+            genres: genreNames
+          }));
+        })
+    } catch (e) {
+      console.log(e);
     }
-  };*/
+  }
+
+  /*expandMovie = (movieIndex) => {
+    const movieId = this.state.movieList[movieIndex].id;
+    this.getMovie(movieId);
+  }*/
+
+  getMovie = async (movieIndex) => {
+    const movieId = this.state.movieList[movieIndex].id;
+    try {
+      const rawResponse = await fetch(`${API}movie/${movieId}?api_key=${API_KEY}`);
+      const response = await rawResponse.json();
+      console.log(response);
+      this.setState(prevState => ({
+        ...prevState,
+        movieDetails: response,
+        expand: true
+      }));
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   render() {
-    const { results, visible } = this.state;
+    const { movieList, visible, movieDetails, genres, expand } = this.state;
 
     return (
       <div className="App">
@@ -62,8 +99,12 @@ class App extends Component {
             keyDown={this.handleKey}
             changed={this.handleChange} />
           <MovieList
-            movies={results}
-            visible={visible} />
+            movies={movieList}
+            visible={visible}
+            clicked={this.getMovie}
+            movieDetails={movieDetails}
+            genres={genres}
+            expand={expand} />
         </Layout>
       </div>
     );
