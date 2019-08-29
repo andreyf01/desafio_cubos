@@ -5,15 +5,15 @@ import MovieText from './MovieText/MovieText';
 const movieInfo = (props) => (
   <div className={classes.MovieInfo}>
     <MovieText
-      description={props.description}
+      overview={props.overview}
       sit={props.sit}
       lang={props.lang}
       dur={props.dur}
       budget={props.budget}
-      receipt={props.receipt}
+      revenue={props.revenue}
       profit={props.profit}
       score={props.score} />
-    <img src={props.image} alt={props.alt} />
+    <img src={`https://image.tmdb.org/t/p/w500/${props.image}`} alt={props.alt} />
   </div>
 );
 
