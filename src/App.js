@@ -15,7 +15,9 @@ class App extends Component {
     genres: {},
     visible: false,
     movieDetails: {},
-    expand: false
+    expand: false,
+    currentPage: 1,
+    moviesPerPage: 5
   };
 
   handleChange = (event) => {
@@ -107,8 +109,25 @@ class App extends Component {
     this.search(this.state.query);
   }
 
+  handlePageClicked = (event) => {
+    console.log(event.target.id);
+    const page = event.target.id;
+    this.setState(prevState => ({
+      ...prevState,
+      currentPage: page
+    }));
+  }
+
   render() {
-    const { movieList, visible, movieDetails, genres, expand } = this.state;
+    const { movieList, visible, movieDetails, genres, expand, currentPage, moviesPerPage } = this.state;
+    const lastMovieIndex = currentPage * moviesPerPage;
+    const firstMovieIndex = lastMovieIndex - moviesPerPage;
+    const currentMovies = movieList.slice(firstMovieIndex, lastMovieIndex);
+
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(movieList.length / moviesPerPage); i++) {
+      pageNumbers.push(i);
+    }
 
     return (
       <div className="App">
@@ -120,13 +139,16 @@ class App extends Component {
             changed={this.handleChange}
             value={this.state.query} />
           <MovieList
-            movies={movieList}
+            movies={currentMovies}
             visible={visible}
             titleClicked={this.getMovie}
             movieDetails={movieDetails}
             genres={genres}
             expand={expand}
-            buttonClicked={this.handleBtnClicked} />
+            buttonClicked={this.handleBtnClicked}
+            pageClicked={this.handlePageClicked}
+            pageNumbers={pageNumbers}
+          />
         </Layout>
       </div>
     );

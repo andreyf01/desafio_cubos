@@ -5,7 +5,7 @@ import MovieDetail from '../../Components/MovieDetail/MovieDetail';
 
 
 const MovieList = (props) => {
-  const { movies, visible, titleClicked, buttonClicked, genres, expand, movieDetails } = props;
+  const { movies, visible, titleClicked, buttonClicked, genres, expand, movieDetails, pageNumbers, pageClicked } = props;
   const [isVisible, setVisibility] = useState(null);
 
   useEffect(() => {
@@ -61,8 +61,18 @@ const MovieList = (props) => {
               titleClick={() => titleClicked(index)}
               buttonClick={() => buttonClicked()} />
           ))}
-          Pages
-          </div>
+          <ul id="page-numbers">
+            {pageNumbers.map(number => (
+              <li
+                key={number}
+                id={number}
+                onClick={pageClicked}
+              >
+                {number}
+              </li>
+            ))}
+          </ul>
+        </div>
       );
     }
   } else {
