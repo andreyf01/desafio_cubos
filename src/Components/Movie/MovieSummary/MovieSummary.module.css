@@ -16,6 +16,8 @@
   letter-spacing: -1px;
   font-size: 2em;
   margin: -40px 0 -20px 0;
+  color: #02d9db;
+  background-color: #116193;
 }
 
 .tags {
@@ -25,4 +27,5 @@
   border: 1px solid #116193;
   border-radius: 20px;
   cursor: pointer;
+  margin-left: 10px;
 }

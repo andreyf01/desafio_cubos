@@ -1,11 +1,11 @@
 import React from 'react';
-import classes from './MovieFull.module.css';
-import MovieDetail from './MovieDetail/MovieDetail';
+import classes from './MovieDetail.module.css';
+import MovieInfo from './MovieInfo/MovieInfo';
 
-const movieDetail = (props) => (
+const MovieDetail = (props) => (
   <div className={classes.MovieDetail}>
     <h2>{props.movieTitle}</h2>
-    <MovieDetail
+    <MovieInfo
       image={props.image}
       alt={props.alt}
       overview={props.overview}
@@ -19,4 +19,4 @@ const movieDetail = (props) => (
   </div>
 );
 
-export default movieDetail;
+export default MovieDetail;

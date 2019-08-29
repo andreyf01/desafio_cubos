@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './MovieDetail.module.css';
+import classes from './MovieInfo.module.css';
 import MovieText from './MovieText/MovieText';
 
 const movieInfo = (props) => (

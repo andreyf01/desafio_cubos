@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Movie from '../../Components/Movie/Movie';
-import MovieFull from '../../Components/MovieFull/MovieFull';
+import MovieDetail from '../../Components/MovieDetail/MovieDetail';
 //import classes from './MovieList.module.css';
 
 
@@ -27,7 +27,8 @@ const MovieList = (props) => {
   }*/
   if (expand) {
     return (
-      <MovieFull
+      <MovieDetail
+        movieTitle={movieDetails.title}
         image={movieDetails.poster_path}
         alt={movieDetails.title}
         overview={movieDetails.overview}
