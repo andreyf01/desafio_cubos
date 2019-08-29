@@ -1,3 +1,11 @@
+.MovieDetail {
+  text-align: justify;
+  flex: 1;
+  margin-left: 10px;
+  background-color: #ebebeb;
+  display: flex;
+  flex-flow: column;
+}
 
 .MovieDetail h2 {
   font-weight: 300;
@@ -5,4 +13,5 @@
   font-size: 2em;
   color: #116193;
   background-color: rgb(224, 224, 224);
+  text-align: left;
 }

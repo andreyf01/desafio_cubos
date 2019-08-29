@@ -80,7 +80,6 @@ class App extends Component {
     try {
       const rawResponse = await fetch(`${API}movie/${movieId}?api_key=${API_KEY}&language=pt-BR`);
       const response = await rawResponse.json();
-      console.log(response);
       this.setState(prevState => ({
         ...prevState,
         movieDetails: response,
@@ -92,7 +91,6 @@ class App extends Component {
   }
 
   index = () => {
-    console.log('hehexd');
     this.setState(prevState => ({
       ...prevState,
       expand: false,
