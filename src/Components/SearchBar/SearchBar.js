@@ -7,7 +7,8 @@ const searchBar = props => (
     type="text"
     placeholder="Busque um filme por nome, ano ou gênero..."
     onKeyDown={props.keyDown}
-    onChange={props.changed} />
+    onChange={props.changed}
+    value={props.value} />
 );
 
 export default searchBar;

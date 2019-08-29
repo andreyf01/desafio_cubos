@@ -40,6 +40,7 @@ class App extends Component {
       this.setState(prevState => ({
         ...prevState,
         visible: true,
+        expand: false,
         movieList: response.results
       }));
     } catch (e) {
@@ -75,7 +76,7 @@ class App extends Component {
   getMovie = async (movieIndex) => {
     const movieId = this.state.movieList[movieIndex].id;
     try {
-      const rawResponse = await fetch(`${API}movie/${movieId}?api_key=${API_KEY}`);
+      const rawResponse = await fetch(`${API}movie/${movieId}?api_key=${API_KEY}&language=pt-BR`);
       const response = await rawResponse.json();
       console.log(response);
       this.setState(prevState => ({
@@ -88,23 +89,44 @@ class App extends Component {
     }
   }
 
+  index = () => {
+    console.log('hehexd');
+    this.setState(prevState => ({
+      ...prevState,
+      expand: false,
+      visible: false,
+      query: ''
+    }));
+  }
+
+  handleBtnClicked = (tagName) => {
+    this.setState(prevState => ({
+      ...prevState,
+      query: tagName
+    }));
+    this.search(this.state.query);
+  }
+
   render() {
     const { movieList, visible, movieDetails, genres, expand } = this.state;
 
     return (
       <div className="App">
         <Layout>
-          <Cockpit />
+          <Cockpit
+            clicked={this.index} />
           <SearchBar
             keyDown={this.handleKey}
-            changed={this.handleChange} />
+            changed={this.handleChange}
+            value={this.state.query} />
           <MovieList
             movies={movieList}
             visible={visible}
-            clicked={this.getMovie}
+            titleClicked={this.getMovie}
             movieDetails={movieDetails}
             genres={genres}
-            expand={expand} />
+            expand={expand}
+            buttonClicked={this.handleBtnClicked} />
         </Layout>
       </div>
     );

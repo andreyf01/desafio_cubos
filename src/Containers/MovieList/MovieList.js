@@ -5,7 +5,7 @@ import MovieFull from '../../Components/MovieFull/MovieFull';
 
 
 const MovieList = (props) => {
-  const { movies, visible, clicked, genres, expand, movieDetails } = props;
+  const { movies, visible, titleClicked, buttonClicked, genres, expand, movieDetails } = props;
   const [isVisible, setVisibility] = useState(null);
 
   useEffect(() => {
@@ -37,7 +37,8 @@ const MovieList = (props) => {
         budget={movieDetails.budget}
         revenue={movieDetails.revenue}
         profit={movieDetails.profit}
-        score={movieDetails.popularity} />
+        score={movieDetails.popularity}
+      />
     )
   } else if (isVisible) {
     if (movies.length === 0) {
@@ -56,7 +57,8 @@ const MovieList = (props) => {
               releaseDate={mov.release_date}
               tags={mov.genre_ids}
               genres={genres}
-              click={() => clicked(index)} />
+              titleClick={() => titleClicked(index)}
+              buttonClick={() => buttonClicked()} />
           ))}
           Pages
           </div>

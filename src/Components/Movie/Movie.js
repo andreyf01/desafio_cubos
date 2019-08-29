@@ -4,7 +4,7 @@ import MovieSummary from './MovieSummary/MovieSummary';
 //import genres from '../../genre_list.json';
 
 const movie = (props) => {
-  const { src, id, movieTitle, overview, popularity, releaseDate, tags, click, genres } = props;
+  const { src, id, movieTitle, overview, popularity, releaseDate, tags, titleClick, genres, buttonClick } = props;
 
   return (
     <div className={classes.Movie}>
@@ -18,7 +18,8 @@ const movie = (props) => {
         releaseDate={releaseDate}
         tags={tags}
         popularity={popularity}
-        click={click}
+        buttonClick={buttonClick}
+        titleClick={titleClick}
         tagNames={genres} />
     </div>
   );
