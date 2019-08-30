@@ -1,10 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import classes from './Cockpit.module.css';
 
 const cockpit = props => {
   return (
     <div className={classes.Cockpit}>
-      <h1 onClick={() => props.clicked()} >Movies</h1>
+      <Link
+        className={classes.Title}
+        to="/">
+        Movies
+      </Link>
     </div>
   )
 }

@@ -4,7 +4,6 @@ import classes from './Layout.module.css';
 
 const layout = (props) => (
   <Aux>
-    <div>Header, Toolbar, SideDrawer(?)</div>
     <main className={classes.Content}>
       {props.children}
     </main>

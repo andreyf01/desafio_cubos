@@ -1,12 +1,16 @@
 .Cockpit {
   text-align: center;
+  background-color: #116193;
+  padding: 15px 0 15px 0;
 }
 
-h1 {
-  background-color: #116193;
+.Title {
   color: #02d9db;
+  font-size: 2.6em;
   font-weight: 300;
   height: 60px;
+  width: 100%;
   top: 50%;
-  margin: 15px 0 10px 0;
+  text-decoration: none;
+  cursor: pointer;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './Movie.module.css';
+import { Link } from 'react-router-dom';
 
 import Circle from '../../../Components/Circle/Circle';
 import Tag from '../../../Components/Tag/Tag';
@@ -30,7 +31,9 @@ const Movie = ({ movie }) => {
             style={popStyle}
           />
         </div>
-        <h2>{movie.title}</h2>
+        <Link>
+          <h2>{movie.title}</h2>
+        </Link>
       </div>
       <div className={classes.Summary}>
         <p>{movie.overview}</p>
