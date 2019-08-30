@@ -1,0 +1,11 @@
+.Tag {
+  font-family: "Abel", sans-serif;
+  background-color: white;
+  color: #116193;
+  border: 1px solid #116193;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-left: 10px;
+  padding: 4px;
+  text-decoration: none;
+}

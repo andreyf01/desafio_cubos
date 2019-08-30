@@ -1,0 +1,77 @@
+.Movie {
+  display: grid;
+  width: 80%;
+  margin-left: 10%;
+  margin-right:10%;
+  margin-top: 3%;
+}
+
+.Poster {
+  grid-area: poster;
+  width: 100%;
+}
+
+.Title {
+  background-color: var(--main-color);
+  color: #63E6E9;
+  font-family: "Abel", sans-serif;
+  grid-area: title;
+  position:relative;
+  padding: 16px 0;
+  display: flex;
+  justify-content: left;
+}
+
+.Title h2 {
+  letter-spacing: -1px;
+  font-weight: 300;
+  font-size: 2.2em;
+  margin: 32px 0 0 120px;
+}
+
+.Popularity {
+  position: absolute;
+  top: 50%;
+  margin-left: 16px;
+}
+
+.Summary {
+  background-color: #E6E6E6;
+  padding: 16px;
+  text-align: left;
+  grid-area: summary;
+}
+
+.Summary p {
+  margin-top: 50px;
+}
+
+@media (min-width: 0px) {
+  .Movie{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "poster"
+      "title"
+      "summary";
+  }
+}
+
+@media (min-width: 600px) {
+  .Movie {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "poster title"
+      "poster summary";
+  }
+}
+
+@media (min-width: 960px) {
+  .Movie {
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas:
+      "poster title"
+      "poster summary"
+      "poster summary"
+      "poster summary";
+  }
+}
