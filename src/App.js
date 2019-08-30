@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
 import Layout from './Components/Layout/Layout';
-import MovieList from './Containers/MovieList/MovieList';
+import MovieList from './Views/MovieList/MovieList';
 import SearchBar from './Components/SearchBar/SearchBar';
 import Cockpit from './Components/Cockpit/Cockpit';
 import './App.css';
@@ -20,7 +22,7 @@ class App extends Component {
     moviesPerPage: 5
   };
 
-  handleChange = (event) => {
+  /*handleChange = (event) => {
     this.setState({ query: event.target.value });
   };
 
@@ -33,9 +35,9 @@ class App extends Component {
       }));
       this.search(this.state.query);
     }
-  };
+  };*/
 
-  search = async (query) => {
+  /*search = async (query) => {
     try {
       const rawResponse = await fetch(`${API}search/movie?api_key=${API_KEY}&language=pt-BR&query=${query}`);
       const response = await rawResponse.json();
@@ -48,9 +50,9 @@ class App extends Component {
     } catch (e) {
       console.log(e);
     }
-  }
+  }*/
 
-  componentDidMount() {
+  /*componentDidMount() {
     try {
       //fetch(`${API}genre/movie/list?api_key=${API_KEY}&language=pt-BR`)
       fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=f95f42152ef5946aaebac8ca5c73720f&language=pt-BR')
@@ -68,14 +70,14 @@ class App extends Component {
     } catch (e) {
       console.log(e);
     }
-  }
+  }*/
 
   /*expandMovie = (movieIndex) => {
     const movieId = this.state.movieList[movieIndex].id;
     this.getMovie(movieId);
   }*/
 
-  getMovie = async (movieIndex) => {
+  /*getMovie = async (movieIndex) => {
     const movieId = this.state.movieList[movieIndex].id;
     try {
       const rawResponse = await fetch(`${API}movie/${movieId}?api_key=${API_KEY}&language=pt-BR`);
@@ -88,7 +90,7 @@ class App extends Component {
     } catch (e) {
       console.log(e);
     }
-  }
+  }*/
 
   index = () => {
     this.setState(prevState => ({
@@ -130,23 +132,14 @@ class App extends Component {
     return (
       <div className="App">
         <Layout>
-          <Cockpit
-            clicked={this.index} />
-          <SearchBar
-            keyDown={this.handleKey}
-            changed={this.handleChange}
-            value={this.state.query} />
-          <MovieList
-            movies={currentMovies}
-            visible={visible}
-            titleClicked={this.getMovie}
-            movieDetails={movieDetails}
-            genres={genres}
-            expand={expand}
-            buttonClicked={this.handleBtnClicked}
-            pageClicked={this.handlePageClicked}
-            pageNumbers={pageNumbers}
-          />
+          <Router>
+            <Cockpit
+              clicked={this.index} />
+            <Route
+              path="/"
+              exact
+              component={() => (<MovieList />)} />
+          </Router>
         </Layout>
       </div>
     );
