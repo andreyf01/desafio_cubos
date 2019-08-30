@@ -23,7 +23,9 @@ const Movie = ({ movie }) => {
 
   return (
     <div className={classes.Movie}>
-      <img className={classes.Poster} src={`${IMG}${movie.poster_path}`} alt={movie.title} />
+      <div className={classes.Poster}>
+        <img src={`${IMG}${movie.poster_path}`} alt={movie.title} />
+      </div>
       <div className={classes.Title}>
         <div className={classes.Popularity}>
           <Circle
@@ -31,7 +33,7 @@ const Movie = ({ movie }) => {
             style={popStyle}
           />
         </div>
-        <Link>
+        <Link className={classes.TitleLink} to={`/movie/${movie.id}`}>
           <h2>{movie.title}</h2>
         </Link>
       </div>

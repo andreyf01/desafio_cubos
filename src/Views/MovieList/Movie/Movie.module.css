@@ -7,8 +7,8 @@
 }
 
 .Poster {
-  grid-area: poster;
   background-color: #E6E6E6;
+  grid-area: poster;
 }
 
 .Poster img {
@@ -16,8 +16,7 @@
 }
 
 .Title {
-  background-color: var(--main-color);
-  color: #63E6E9;
+  background-color: var(--main-color); 
   font-family: "Abel", sans-serif;
   grid-area: title;
   display: flex;
@@ -30,6 +29,11 @@
   font-weight: 300;
   font-size: 2.2em;
   margin: 0 16px;
+}
+
+.TitleLink {
+  text-decoration: none;
+  color: #63E6E9;
 }
 
 .Popularity {
