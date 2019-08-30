@@ -1,0 +1,23 @@
+.InnerCircle {
+  background-color: var(--main-color);
+  height: 100%;
+  width: 100%;
+  color: #63ECE9;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.InnerCircle span {
+  font-size: 2.2em;
+}
+
+.OuterCircle {
+  width: 75px;
+  height: 75px;
+  padding: 5px;
+  background-color: #63ECE9;
+  border: 3px solid var(--main-color);
+  border-radius: 100%;
+}
