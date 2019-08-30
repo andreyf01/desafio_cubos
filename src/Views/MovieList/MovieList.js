@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import classes from './MovieList.module.css';
 
 import SearchBar from '../../Components/SearchBar/SearchBar';
+import Circle from '../../Components/Circle/Circle';
 import Movie from './Movie/Movie';
 
 import { API, API_KEY } from '../../helpers/constants';
@@ -48,18 +49,44 @@ const MovieList = () => {
     }
   }
 
+  const pageStyle = {
+    width: '25px',
+    height: '25px',
+    fontSize: '1.2em'
+  }
+
+  const showPages = pages.map(number => {
+
+    return (
+      <li
+        key={number}
+        id={number}
+        onClick={number != currentPage ? handlePage : null}>
+        {number == currentPage ?
+          (<Circle
+            style={pageStyle}
+            value={number} />) : number}
+      </li>
+    );
+  });
+
   return (
     <div>
       <SearchBar
         keyDown={handleKey}
         changed={handleChange}
         value={query} />
-      <div>{movieList.map((mov, index) => (
-        <Movie
-          key={index}
-          movie={mov} />
-      ))}
-        <div></div>
+      <div>
+        {currentMovies.map((mov, index) => (
+          <Movie
+            key={index}
+            movie={mov} />
+        ))}
+        <div className={classes.Pages}>
+          <ul>
+            {showPages}
+          </ul>
+        </div>
       </div>
 
     </div>
