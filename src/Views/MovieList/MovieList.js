@@ -9,6 +9,21 @@ import { API, API_KEY } from '../../helpers/constants';
 const MovieList = () => {
   const [movieList, setMovieList] = useState([]);
   const [query, setQuery] = useState('');
+  const [currentPage, setPage] = useState(1);
+
+  const moviesPerPage = 5;
+  const lastMovie = currentPage * moviesPerPage;
+  const firstMovie = lastMovie - moviesPerPage;
+  const currentMovies = movieList.slice(firstMovie, lastMovie);
+
+  const handlePage = (event) => {
+    setPage(event.target.id);
+  }
+
+  const pages = [];
+  for (let i = 1; i <= Math.ceil(movieList.length / moviesPerPage); i++) {
+    pages.push(i);
+  }
 
   const handleChange = (event) => {
     setQuery(event.target.value);
@@ -44,7 +59,9 @@ const MovieList = () => {
           key={index}
           movie={mov} />
       ))}
+        <div></div>
       </div>
+
     </div>
   )
 }

@@ -14,13 +14,22 @@ const Movie = ({ movie }) => {
     <Tag key={id} name={tagNames[id]} />
   ));
 
+  const popStyle = {
+    width: '75px',
+    height: '75px',
+    fontSize: '2.2em'
+  };
+
   return (
     <div className={classes.Movie}>
       <img className={classes.Poster} src={`${IMG}${movie.poster_path}`} alt={movie.title} />
       <div className={classes.Title}>
         <h2>{movie.title}</h2>
         <div className={classes.Popularity}>
-          <Popularity popularity={movie.popularity} />
+          <Popularity
+            popularity={movie.popularity}
+            style={popStyle}
+          />
         </div>
       </div>
       <div className={classes.Summary}>
