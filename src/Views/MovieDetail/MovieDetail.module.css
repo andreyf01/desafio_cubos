@@ -1,0 +1,119 @@
+.Heading {
+  background-color: #E6E6E6;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+
+.Title {
+  color: var(--main-color);
+  font-weight: 300;
+  letter-spacing: -1px;
+  font-size: 2em;
+  margin: 0;
+}
+
+.Date {
+  color: #C0C0C0;
+  font-size: 1.2em;
+  align-self: flex-end;
+}
+
+.Container {
+  display: grid;
+  width: 100%;
+  background-color: #F0F0F0;
+}
+
+.Container h3 {
+  color: var(--main-color);
+  font-weight: 300;
+  text-align: left;
+  font-size: 1.7em;
+  width: 100%;
+  border-bottom: 2px solid;
+  border-color: #63ECE9;
+}
+
+.Overview {
+  grid-area: overview;
+}
+
+.InfoContainer {
+  grid-area: info;
+}
+
+.DetailContainer {
+  margin: 16px;
+}
+
+.Info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Stats {
+  display: flex;
+  margin-top: 32px;
+  justify-content: space-between;
+  grid-area: stats;
+}
+
+.Poster {
+  background-color: #E6E6E6;
+  grid-area: poster;
+}
+
+.Poster img {
+  width: 100%;
+}
+
+.VideoContainer {
+  margin-top: 32px;
+  grid-area: video;
+  position: relative;
+  padding-top: 56.25%;
+}
+
+.Video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-width: 0px) {
+  .Container {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "poster"
+      "overview"
+      "info"
+      "stats"
+      "video";
+  }
+}
+
+@media (min-width: 600px) {
+  .Container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "overview poster"
+      "info info"
+      "stats stats"
+      "video video"
+  }
+}
+
+@media (min-width: 960px) {
+  .Container {
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+      "overview poster"
+      "info poster"
+      "stats poster"
+      "video video"
+  }
+}
