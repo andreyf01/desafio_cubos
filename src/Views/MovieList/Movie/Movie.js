@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Movie.module.css';
 
-import Popularity from '../../../Components/Popularity/Popularity';
+import Circle from '../../../Components/Circle/Circle';
 import Tag from '../../../Components/Tag/Tag';
 
 import { IMG } from '../../../helpers/constants';
@@ -24,13 +24,13 @@ const Movie = ({ movie }) => {
     <div className={classes.Movie}>
       <img className={classes.Poster} src={`${IMG}${movie.poster_path}`} alt={movie.title} />
       <div className={classes.Title}>
-        <h2>{movie.title}</h2>
         <div className={classes.Popularity}>
-          <Popularity
-            popularity={movie.popularity}
+          <Circle
+            value={movie.popularity}
             style={popStyle}
           />
         </div>
+        <h2>{movie.title}</h2>
       </div>
       <div className={classes.Summary}>
         <p>{movie.overview}</p>
