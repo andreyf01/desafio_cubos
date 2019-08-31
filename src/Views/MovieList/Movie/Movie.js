@@ -21,6 +21,8 @@ const Movie = ({ movie }) => {
     fontSize: '2.2em'
   };
 
+  const formattedDate = new Date(movie.release_date).toLocaleDateString("pt-BR");
+
   return (
     <div className={classes.Movie}>
       <div className={classes.Poster}>
@@ -33,9 +35,11 @@ const Movie = ({ movie }) => {
             style={popStyle}
           />
         </div>
-        <Link className={classes.TitleLink} to={`/movie/${movie.id}`}>
+        <div className={classes.Container}><Link className={classes.TitleLink} to={`/movie/${movie.id}`}>
           <h2>{movie.title}</h2>
         </Link>
+          <span className={classes.Date}>{formattedDate}</span>
+        </div>
       </div>
       <div className={classes.Summary}>
         <p>{movie.overview}</p>

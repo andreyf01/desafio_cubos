@@ -7,11 +7,12 @@
   border-width: 0;
   text-indent: 28px;
   margin: 30px 0 20px 0;
+  font-family: "Abel", sans-serif;
+  font-size: 1em;
 }
 
 ::placeholder {
   color: #116193;
-  font-family: "Abel", sans-serif;
 }
 
 :focus {
