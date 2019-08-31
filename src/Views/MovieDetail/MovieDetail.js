@@ -12,6 +12,11 @@ const MovieDetail = ({ match }) => {
   const [trailer, setTrailer] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const convertToCurrency = (value) => value.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  });
+
   const getMovie = async () => {
     try {
       const rawResponse = await fetch(`${API}movie/${match.params.id}?api_key=${API_KEY}&language=pt-BR`);
@@ -62,9 +67,9 @@ const MovieDetail = ({ match }) => {
             <MovieInfo heading="Situacao" value={movie.status} />
             <MovieInfo heading="Idioma" value={movie.original_language} />
             <MovieInfo heading="Duração" value={movie.runtime} />
-            <MovieInfo heading="Orçamento" value={movie.budget} />
-            <MovieInfo heading="Receita" value={movie.revenue} />
-            <MovieInfo heading="Lucro" value={movie.budget - movie.revenue} />
+            <MovieInfo heading="Orçamento" value={convertToCurrency(movie.budget)} />
+            <MovieInfo heading="Receita" value={convertToCurrency(movie.revenue)} />
+            <MovieInfo heading="Lucro" value={convertToCurrency(movie.revenue - movie.budget)} />
           </div>
         </div>
         <div className={[classes.DetailContainer, classes.Stats].join(' ')}>
