@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 import Circle from '../../../Components/Circle/Circle';
 import Tag from '../../../Components/Tag/Tag';
 
+
 import { IMG } from '../../../helpers/constants';
 import tagNames from '../../../helpers/tagNames.json';
 
 
 const Movie = ({ movie }) => {
-
   const tags = movie.genre_ids.map(id => (
-    <Tag key={id} name={tagNames[id]} />
+    <Tag key={id} name={tagNames[id]} id={id} />
   ));
 
   const popStyle = {
@@ -29,7 +29,7 @@ const Movie = ({ movie }) => {
       <div className={classes.Title}>
         <div className={classes.Popularity}>
           <Circle
-            value={movie.popularity}
+            value={Math.round(movie.popularity) + '%'}
             style={popStyle}
           />
         </div>

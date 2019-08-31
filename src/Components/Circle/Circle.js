@@ -6,7 +6,7 @@ const Popularity = (props) => (
     className={classes.OuterCircle}
     style={props.style}>
     <div className={classes.InnerCircle} >
-      <span>{Math.round(props.value)}</span>
+      <span>{props.value}</span>
     </div>
   </div>
 )
