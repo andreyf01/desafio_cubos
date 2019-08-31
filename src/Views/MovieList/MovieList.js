@@ -1,21 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { observer } from 'mobx-react-lite';
 import classes from './MovieList.module.css';
 
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import Circle from '../../Components/Circle/Circle';
 import Movie from './Movie/Movie';
-
+import { searchStoreContext } from '../../Stores/SearchStore';
 import { API, API_KEY } from '../../helpers/constants';
 
 const MovieList = () => {
+  const searchStore = useContext(searchStoreContext);
   const [movieList, setMovieList] = useState([]);
   const [query, setQuery] = useState('');
   const [currentPage, setPage] = useState(1);
+  const [searchText, setSearchText] = useState(false);
 
   const moviesPerPage = 5;
   const lastMovie = currentPage * moviesPerPage;
   const firstMovie = lastMovie - moviesPerPage;
   const currentMovies = movieList.slice(firstMovie, lastMovie);
+  const selectedTag = searchStore.selectedTag;
+
+  const getMoviesByTag = async () => {
+    try {
+      const rawResponse = await fetch(`${API}discover/movie?with_genres=${selectedTag}&page=1&api_key=${API_KEY}`);
+      const response = await rawResponse.json();
+      setMovieList(response.results);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  useEffect(() => {
+    console.log(selectedTag);
+    getMoviesByTag();
+  }, [selectedTag]);
 
   const handlePage = (event) => {
     setPage(event.target.id);
@@ -31,10 +50,14 @@ const MovieList = () => {
   }
 
   const handleKey = (event) => {
-    if (event.key === 'Enter') {
-      search(query.replace(' ', '+'));
-    }
+    if (event.key === 'Enter')
+      setSearchText(true);
   };
+
+  useEffect(() => {
+    if (searchText)
+      search(query.replace(' ', '+'));
+  }, [searchText]);
 
   const search = async (query) => {
     try {
@@ -43,7 +66,6 @@ const MovieList = () => {
       );
       const response = await rawResponse.json();
       setMovieList(response.results);
-      console.log(response.results);
     } catch (e) {
       console.log(e);
     }
@@ -93,4 +115,4 @@ const MovieList = () => {
   )
 }
 
-export default MovieList;
+export default observer(MovieList);
