@@ -1,6 +1,6 @@
 .Heading {
   background-color: #E6E6E6;
-  padding: 16px;
+  padding: 24px;
   display: flex;
   justify-content: space-between;
   margin-top: 32px;
@@ -36,6 +36,10 @@
   border-color: #63ECE9;
 }
 
+.Container p {
+  text-align: left;
+}
+
 .Overview {
   grid-area: overview;
 }
@@ -45,7 +49,7 @@
 }
 
 .DetailContainer {
-  margin: 16px;
+  padding: 24px;
 }
 
 .Info {
@@ -61,7 +65,7 @@
 }
 
 .Poster {
-  background-color: #E6E6E6;
+  background-color: #F0F0F0;
   grid-area: poster;
 }
 
