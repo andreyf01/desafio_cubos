@@ -13,28 +13,30 @@ const MovieList = () => {
   const [movieList, setMovieList] = useState([]);
   const [query, setQuery] = useState('');
   const [currentPage, setPage] = useState(1);
-  const [searchText, setSearchText] = useState(false);
 
   const moviesPerPage = 5;
   const lastMovie = currentPage * moviesPerPage;
   const firstMovie = lastMovie - moviesPerPage;
   const currentMovies = movieList.slice(firstMovie, lastMovie);
-  const selectedTag = searchStore.selectedTag;
 
-  const getMoviesByTag = async () => {
+  const search = async () => {
     try {
-      const rawResponse = await fetch(`${API}discover/movie?with_genres=${selectedTag}&page=1&api_key=${API_KEY}`);
-      const response = await rawResponse.json();
-      setMovieList(response.results);
+      if (searchStore.searchUrl) {
+        const rawResponse = await fetch(searchStore.searchUrl);
+        const response = await rawResponse.json();
+        setMovieList(response.results);
+      } else {
+        setMovieList([]);
+        setQuery('');
+      }
     } catch (e) {
       console.log(e);
     }
   }
 
   useEffect(() => {
-    console.log(selectedTag);
-    getMoviesByTag();
-  }, [selectedTag]);
+    search();
+  }, [searchStore.searchUrl])
 
   const handlePage = (event) => {
     setPage(event.target.id);
@@ -51,25 +53,8 @@ const MovieList = () => {
 
   const handleKey = (event) => {
     if (event.key === 'Enter')
-      setSearchText(true);
+      searchStore.changeSearchQuery(query.replace(' ', '+'));
   };
-
-  useEffect(() => {
-    if (searchText)
-      search(query.replace(' ', '+'));
-  }, [searchText]);
-
-  const search = async (query) => {
-    try {
-      const rawResponse = await fetch(
-        `${API}search/movie?api_key=${API_KEY}&language=pt-BR&query=${query}`
-      );
-      const response = await rawResponse.json();
-      setMovieList(response.results);
-    } catch (e) {
-      console.log(e);
-    }
-  }
 
   const pageStyle = {
     width: '25px',

@@ -5,7 +5,7 @@ const searchBar = props => (
   <input
     className={classes.SearchBar}
     type="text"
-    placeholder="Busque um filme por nome, ano ou gênero..."
+    placeholder="Busque um filme..."
     onKeyDown={props.keyDown}
     onChange={props.changed}
     value={props.value} />

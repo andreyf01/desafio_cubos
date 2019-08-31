@@ -1,18 +1,27 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Redirect } from 'react-router-dom';
+import { searchStoreContext } from '../../Stores/SearchStore';
 
 import classes from './Cockpit.module.css';
 
-const cockpit = props => {
+const Cockpit = props => {
+  const searchStore = useContext(searchStoreContext);
+
+  const redir = () => {
+    searchStore.changeSelectedTag(null);
+    searchStore.changeSearchQuery('');
+    return <Redirect to="/" />;
+  }
+
   return (
     <div className={classes.Cockpit}>
-      <Link
+      <span
         className={classes.Title}
-        to="/">
+        onClick={() => redir()}>
         Movies
-      </Link>
+      </span>
     </div>
   )
 }
 
-export default cockpit;
+export default Cockpit;
